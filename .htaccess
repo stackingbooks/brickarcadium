@@ -1,0 +1,49 @@
+Options +FollowSymLinks -MultiViews -Indexes
+# Turn mod_rewrite on
+RewriteEngine On
+RewriteBase /
+
+ErrorDocument 403 /errors/403
+ErrorDocument 404 /errors/404
+ErrorDocument 500 /errors/500
+
+## hide .php extension
+# To externally redirect /dir/foo.php to /dir/foo
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,NE,L]
+
+## To internally redirect /dir/foo to /dir/foo.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+RewriteRule ^/?user/profile/([0-9]+)+$ /user/profile?id=$1 [L,QSA]
+RewriteRule ^/?user/profile/?$ /user/profile [L,QSA]
+
+RewriteRule ^/?user/list/([0-9]+)/?$ /user/list?page=$1 [L,QSA]
+RewriteRule ^/?user/list/?$ /user/list [L,QSA]
+
+RewriteRule ^/?store/item/([0-9]+)/?$ /store/item?item=$1 [L,QSA]
+RewriteRule ^/?store/item/?$ /store/item [L,QSA]
+
+RewriteRule ^/?store/([0-9]+)/?$ /store?page=$1 [L,QSA]
+RewriteRule ^/?store?$ /store [L,QSA]
+
+RewriteRule ^/?forums/category/([0-9]+)/?$ /forums/category?id=$1 [L,QSA]
+RewriteRule ^/?forums/category/?$ /forums/category [L,QSA]
+
+RewriteRule ^/?forums/create/([0-9]+)/?$ /forums/create?id=$1 [L,QSA]
+RewriteRule ^/?forums/create/?$ /forums/create [L,QSA]
+
+RewriteRule ^/?forums/thread/([0-9]+)/?$ /forums/thread?id=$1 [L,QSA]
+RewriteRule ^/?forums/thread/?$ /forums/thread [L,QSA]
+
+RewriteRule ^/?forums/reply/([0-9]+)/?$ /forums/reply?id=$1 [L,QSA]
+RewriteRule ^/?forums/reply/?$ /forums/reply [L,QSA]
+
+RewriteRule ^/?staff/ban/([0-9]+)/?$ /staff/ban?id=$1 [L,QSA]
+RewriteRule ^/?staff/ban/?$ /staff/ban [L,QSA]
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
