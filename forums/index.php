@@ -37,7 +37,7 @@
 							}
 							echo '<tr><td><a href="/forums/category/' . $row[0] . '"><div><b>' . $row[1] . '</b><br>' . $row[2] . '</div></a></td><td>' . $row['THREADS'] . '</td><td>' . $row['POSTS'] . '</td><td>';
 							if ($RECENT) {
-								echo '<div><a href="/forums/thread/' . $RECENT[0] . '"><b>' . $RECENT[1] . '</b></a><br> by <b><a href="/user/profile/' . $RECENT['USER_ID'] . '">' . $tuser[1] . '</a></b></div>'; 
+								echo '<div><a href="/forums/thread/' . $RECENT[0] . '"><b>' . htmlspecialchars($RECENT[1]) . '</b></a><br> by <b><a href="/user/profile/' . $RECENT['USER_ID'] . '">' . $tuser[1] . '</a></b></div>'; 
 							};
 							echo '</td></tr>';
 						}
@@ -58,7 +58,7 @@
 							$stmt2->bindParam(1, $row['USER_ID'], PDO::PARAM_STR);
 							$stmt2->execute();
 							$tuser = $stmt2->fetch();
-							echo '<tr><td><div><a href="/forums/thread/' . $row[0] . '"><b>' . $row[1] . '</b></a><br> by <b><a href="/user/profile/' . $tuser[0] . '">' . $tuser[1] . '</a></b></div></td><td>' . $row['REPLIES'] . '</td></tr>';
+							echo '<tr><td><div><a href="/forums/thread/' . $row[0] . '"><b>' . htmlspecialchars($row[1]) . '</b></a><br> by <b><a href="/user/profile/' . $tuser[0] . '">' . $tuser[1] . '</a></b></div></td><td>' . $row['REPLIES'] . '</td></tr>';
 						}
 					?>
 				</table> 
