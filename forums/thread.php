@@ -108,7 +108,7 @@
 		<center>
 		<div style="width:90%;">
 		<h1 style="float: left !important;">Forums </h1><br><br><br>
-		<p style="float: left !important;"><a href="/forums/">Forums </a><i class="fa-solid fa-chevrons-right"></i> <a href="/forums/category/<?php echo $cat[0]; ?>"><?php echo $cat["NAME"]; ?></a> <i class="fa-solid fa-chevrons-right"></i>  <a href="/forums/thread/<?php echo $th[0]; ?>"><?php echo $th[1]; ?></a> </p>
+		<p style="float: left !important;"><a href="/forums/">Forums </a><i class="fa-solid fa-chevrons-right"></i> <a href="/forums/category/<?php echo $cat[0]; ?>"><?php echo $cat["NAME"]; ?></a> <i class="fa-solid fa-chevrons-right"></i>  <a href="/forums/thread/<?php echo $th[0]; ?>"><?php echo htmlspecialchars($th[1]); ?></a> </p>
 		<br><br><a href="/forums/reply/<?php echo $th[0]; ?>"><button style="float: right !important;">Reply</button></a><br><br><br>
 		<div style="display:inline-block;vertical-align:top;width:100%;">
 			<div class="forumplatform" style="border-top-left-radius: 20px;border-top-right-radius: 20px;float:left;width:100%;">
